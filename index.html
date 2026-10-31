@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The World of Banksy</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Afacad:wght@400;500&family=Agdasima:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="#" class="navbar__logo" id="logo">
+      <img src="images/banksy-logo.png" alt="Banksy">
+    </a>
+
+    <button class="navbar__toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="navbar__menu" id="nav-menu" aria-label="Main navigation">
+      <a href="#about" class="nav-btn" id="nav-about">about</a>
+      <a href="#work" class="nav-btn" id="nav-work">work</a>
+      <a href="#guide" class="nav-btn" id="nav-guide">guide</a>
+    </nav>
+  </header>
+
+  <!-- PÁGINA 1: início (visível por defeito) -->
+  <main class="hero page" id="home">
+    <section class="hero__frame">
+      <h1 class="hero__title">The World of Banksy</h1>
+      <h2 class="hero__subtitle">Digital Art Gallery</h2>
+      <a href="#work" class="cta-btn" id="btn-explore">explore now <span aria-hidden="true">&rarr;</span></a>
+    </section>
+  </main>
+
+  <!-- PÁGINA 2: about (aparece quando o endereço termina em #about) -->
+  <main class="hero page subpage" id="about">
+    <section class="about__frame">
+      <div class="about__text">
+        <h1 class="about__title">Banksy: The Anonymous Artist</h1>
+
+        <p>Banksy is an anonymous British street artist known for his distinctive stencil technique and provocative visual messages. His work combines humour, irony and social criticism to explore themes such as war, politics, consumerism, surveillance and inequality.</p>
+
+        <p>Emerging from the Bristol graffiti scene, Banksy became internationally recognised for transforming public spaces into platforms for artistic expression and social commentary. His work can be found in murals, prints, installations and other artistic formats.</p>
+
+        <p>Although his identity remains publicly unconfirmed, his work has become one of the most recognisable forms of contemporary street art.</p>
+      </div>
+
+      <!-- Substitui pelo ficheiro do ícone (hat and glasses) -->
+      <img src="images/anonymous-icon.png" alt="" class="about__icon" id="anonymous-icon">
+    </section>
+  </main>
+
+  <!-- PÁGINA 3: work / galeria (aparece quando o endereço termina em #work) -->
+  <main class="work page subpage" id="work">
+    <section class="gallery" aria-label="Art gallery">
+      <button class="arrow arrow--prev" id="gallery-prev" type="button" data-dir="-1" aria-label="Previous paintings">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      </button>
+
+      <ul class="gallery__track" id="gallery-track">
+        <li class="gallery__item"><a class="art-card" href="#girl-with-balloon"><img src="images/girl-with-balloon.png" width="960" height="1200" alt=""><span class="art-card__title">Girl with Balloon</span></a></li>
+        <li class="gallery__item"><a class="art-card" href="#love-is-in-the-air"><img src="images/love-is-in-the-air.png" width="960" height="1200" alt=""><span class="art-card__title">Love Is in the Air</span></a></li>
+        <li class="gallery__item"><a class="art-card" href="#kissing-coppers"><img src="images/kissing-coppers.png" width="960" height="1200" alt=""><span class="art-card__title">Kissing Coppers</span></a></li>
+        <li class="gallery__item"><a class="art-card" href="#napalm"><img src="images/napalm.png" width="960" height="1200" alt=""><span class="art-card__title">Napalm</span></a></li>
+        <li class="gallery__item"><a class="art-card" href="#one-nation-under-cctv"><img src="images/one-nation-under-cctv.png" width="960" height="1200" alt=""><span class="art-card__title">One Nation Under CCTV</span></a></li>
+        <li class="gallery__item"><a class="art-card" href="#seasons-greetings"><img src="images/seasons-greetings.png" width="960" height="1200" alt=""><span class="art-card__title">Season’s Greetings</span></a></li>
+        <li class="gallery__item"><a class="art-card" href="#valentines-day-mascara"><img src="images/valentines-day-mascara.png" width="960" height="1200" alt=""><span class="art-card__title">Valentine’s Day Mascara</span></a></li>
+        <li class="gallery__item"><a class="art-card" href="#no-ball-games"><img src="images/no-ball-games.png" width="960" height="1200" alt=""><span class="art-card__title">No Ball Games</span></a></li>
+        <li class="gallery__item"><a class="art-card" href="#laugh-now"><img src="images/laugh-now.png" width="960" height="1200" alt=""><span class="art-card__title">Laugh Now</span></a></li>
+      </ul>
+
+      <button class="arrow arrow--next" id="gallery-next" type="button" data-dir="1" aria-label="Next paintings">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </section>
+  </main>
+
+  <!-- PÁGINA 4: guide (aparece quando o endereço termina em #guide) -->
+  <main class="guide page subpage" id="guide">
+    <section class="guide__frame">
+      <h1 class="visually-hidden">Guide</h1>
+
+        <div class="guide__group guide__group--museums">
+          <h2 class="guide__heading">Museums &amp; Permanent Exhibitions</h2>
+          <ul class="guide__notes">
+          <li class="guide__item">
+            <button class="note note--yellow" type="button" style="--rot: -3deg; --tape: 3deg;" aria-haspopup="dialog">
+              <span class="note__paper">
+                <span class="note__title">Museu Banksy</span>
+                <span class="note__city">Lisboa</span>
+              </span>
+              <span class="note__tape" aria-hidden="true"></span>
+              <span class="visually-hidden">Open details</span>
+            </button>
+            <template>
+              <p class="note-card__tag">Museum</p>
+              <h3 class="note-card__title" id="note-card-title">Museu Banksy Lisboa</h3>
+              <dl class="note-card__info">
+                <div><dt>Address</dt><dd>Rua Viriato 25B, 1050-234 Lisboa, Portugal</dd></div>
+                <div><dt>Hours</dt><dd>Open daily, times vary. Check the official website.</dd></div>
+                <div><dt>Price</dt><dd>From about €8 to €13</dd></div>
+              </dl>
+              <a class="note-card__link" href="https://www.museubanksy.pt/" target="_blank" rel="noopener noreferrer">Official website <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <p class="note-card__fineprint">Hours and prices can change. Check the website before you go.</p>
+            </template>
+          </li>
+          <li class="guide__item">
+            <button class="note note--pink" type="button" style="--rot: 2deg; --tape: -4deg;" aria-haspopup="dialog">
+              <span class="note__paper">
+                <span class="note__title">Musée Banksy</span>
+                <span class="note__city">Paris</span>
+              </span>
+              <span class="note__tape" aria-hidden="true"></span>
+              <span class="visually-hidden">Open details</span>
+            </button>
+            <template>
+              <p class="note-card__tag">Museum</p>
+              <h3 class="note-card__title" id="note-card-title">Musée Banksy Paris</h3>
+              <dl class="note-card__info">
+                <div><dt>Address</dt><dd>44 Rue du Faubourg Montmartre, 75009 Paris, France</dd></div>
+                <div><dt>Hours</dt><dd>Mon–Fri 12:00–21:00<br>Sat 10:00–21:00<br>Sun 10:00–19:00</dd></div>
+                <div><dt>Price</dt><dd>From about €12 to €16</dd></div>
+              </dl>
+              <a class="note-card__link" href="https://museebanksy.fr/" target="_blank" rel="noopener noreferrer">Official website <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <p class="note-card__fineprint">Hours and prices can change. Check the website before you go.</p>
+            </template>
+          </li>
+          <li class="guide__item">
+            <button class="note note--blue" type="button" style="--rot: -1.5deg; --tape: -2deg;" aria-haspopup="dialog">
+              <span class="note__paper">
+                <span class="note__title">Moco Museum</span>
+                <span class="note__city">Amsterdam</span>
+              </span>
+              <span class="note__tape" aria-hidden="true"></span>
+              <span class="visually-hidden">Open details</span>
+            </button>
+            <template>
+              <p class="note-card__tag">Museum</p>
+              <h3 class="note-card__title" id="note-card-title">Moco Museum Amsterdam</h3>
+              <dl class="note-card__info">
+                <div><dt>Address</dt><dd>Honthorststraat 20, 1071 DE Amsterdam, Netherlands</dd></div>
+                <div><dt>Hours</dt><dd>Open daily. Check the official website for times.</dd></div>
+                <div><dt>Price</dt><dd>From about €24</dd></div>
+              </dl>
+              <a class="note-card__link" href="https://www.mocomuseum.com/amsterdam/" target="_blank" rel="noopener noreferrer">Official website <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <p class="note-card__fineprint">Hours and prices can change. Check the website before you go.</p>
+            </template>
+          </li>
+          <li class="guide__item">
+            <button class="note note--green" type="button" style="--rot: 3.5deg; --tape: 4deg;" aria-haspopup="dialog">
+              <span class="note__paper">
+                <span class="note__title">Banksy Museum</span>
+                <span class="note__city">Amsterdam</span>
+              </span>
+              <span class="note__tape" aria-hidden="true"></span>
+              <span class="visually-hidden">Open details</span>
+            </button>
+            <template>
+              <p class="note-card__tag">Museum</p>
+              <h3 class="note-card__title" id="note-card-title">Banksy Museum Amsterdam</h3>
+              <dl class="note-card__info">
+                <div><dt>Address</dt><dd>Van Slingelandtplein 8, 1051 DD Amsterdam, Netherlands</dd></div>
+                <div><dt>Hours</dt><dd>Usually 10:00–19:00</dd></div>
+                <div><dt>Price</dt><dd>Adults €17<br>Youth and seniors €13<br>Children (7–12) €9</dd></div>
+              </dl>
+              <a class="note-card__link" href="https://museumbanksy.nl" target="_blank" rel="noopener noreferrer">Official website <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <p class="note-card__fineprint">Hours and prices can change. Check the website before you go.</p>
+            </template>
+          </li>
+          <li class="guide__item">
+            <button class="note note--yellow" type="button" style="--rot: -2.5deg; --tape: -3deg;" aria-haspopup="dialog">
+              <span class="note__paper">
+                <span class="note__title">Moco Museum</span>
+                <span class="note__city">London</span>
+              </span>
+              <span class="note__tape" aria-hidden="true"></span>
+              <span class="visually-hidden">Open details</span>
+            </button>
+            <template>
+              <p class="note-card__tag">Museum</p>
+              <h3 class="note-card__title" id="note-card-title">Moco Museum London</h3>
+              <dl class="note-card__info">
+                <div><dt>Address</dt><dd>1–4 Marble Arch, London W1H 7EJ, United Kingdom</dd></div>
+                <div><dt>Hours</dt><dd>Sun–Thu 10:00–19:00<br>Fri–Sat 10:00–20:00</dd></div>
+                <div><dt>Price</dt><dd>From about £17</dd></div>
+              </dl>
+              <a class="note-card__link" href="https://www.mocomuseum.com/london/" target="_blank" rel="noopener noreferrer">Official website <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <p class="note-card__fineprint">Hours and prices can change. Check the website before you go.</p>
+            </template>
+          </li>
+          </ul>
+        </div>
+
+      <div class="guide__row">
+        <div class="guide__group guide__group--temporary">
+          <h2 class="guide__heading">Temporary Exhibitions</h2>
+          <ul class="guide__notes">
+          <li class="guide__item">
+            <button class="note note--pink" type="button" style="--rot: 2deg; --tape: -3deg;" aria-haspopup="dialog">
+              <span class="note__paper">
+                <span class="note__title">Out of Line</span>
+                <span class="note__city">Colchester</span>
+              </span>
+              <span class="note__tape" aria-hidden="true"></span>
+              <span class="visually-hidden">Open details</span>
+            </button>
+            <template>
+              <p class="note-card__tag">Temporary exhibition · 10/10/2026–28/02/2027</p>
+              <h3 class="note-card__title" id="note-card-title">Out of Line: Banksy and the Art of Dissent</h3>
+              <dl class="note-card__info">
+                <div><dt>Address</dt><dd>The Minories, 74 High Street, Colchester CO1 1UE, England</dd></div>
+                <div><dt>Hours</dt><dd>Tue–Sun 10:00–16:00</dd></div>
+                <div><dt>Price</dt><dd>Adults £12.50<br>Concessions from £7</dd></div>
+              </dl>
+              <a class="note-card__link" href="https://www.theminories.org/event/out-of-line-banksy-and-the-art-of-dissent" target="_blank" rel="noopener noreferrer">Official page <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <p class="note-card__fineprint">Hours and prices can change. Check the website before you go.</p>
+            </template>
+          </li>
+          </ul>
+        </div>
+
+        <div class="guide__group guide__group--street">
+          <h2 class="guide__heading">Street Art Locations</h2>
+          <ul class="guide__notes">
+          <li class="guide__item">
+            <button class="note note--blue" type="button" style="--rot: -3deg; --tape: 3deg;" aria-haspopup="dialog">
+              <span class="note__paper">
+                <span class="note__title">Well Hung Lover</span>
+                <span class="note__city">Bristol</span>
+              </span>
+              <span class="note__tape" aria-hidden="true"></span>
+              <span class="visually-hidden">Open details</span>
+            </button>
+            <template>
+              <p class="note-card__tag">Street art location</p>
+              <h3 class="note-card__title" id="note-card-title">Well Hung Lover</h3>
+              <dl class="note-card__info">
+                <div><dt>Address</dt><dd>Park Street / Frogmore Street, Bristol BS1 5NA, England</dd></div>
+                <div><dt>Hours</dt><dd>Always visible. It is an outdoor mural.</dd></div>
+                <div><dt>Price</dt><dd>Free</dd></div>
+              </dl>
+              <a class="note-card__link" href="https://en.wikipedia.org/wiki/Well_Hung_Lover" target="_blank" rel="noopener noreferrer">More about it <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <p class="note-card__fineprint">Hours and prices can change. Check the website before you go.</p>
+            </template>
+          </li>
+          <li class="guide__item">
+            <button class="note note--yellow" type="button" style="--rot: 1.5deg; --tape: -4deg;" aria-haspopup="dialog">
+              <span class="note__paper">
+                <span class="note__title">M Shed</span>
+                <span class="note__city">Bristol</span>
+              </span>
+              <span class="note__tape" aria-hidden="true"></span>
+              <span class="visually-hidden">Open details</span>
+            </button>
+            <template>
+              <p class="note-card__tag">Street art location</p>
+              <h3 class="note-card__title" id="note-card-title">M Shed</h3>
+              <dl class="note-card__info">
+                <div><dt>Address</dt><dd>Princes Wharf, Wapping Road, Bristol BS1 4RN, England</dd></div>
+                <div><dt>Hours</dt><dd>Tue–Sun 10:00–17:00<br>Weekends and bank holidays until 18:00</dd></div>
+                <div><dt>Price</dt><dd>Free</dd></div>
+              </dl>
+              <a class="note-card__link" href="https://www.bristolmuseums.org.uk/m-shed/" target="_blank" rel="noopener noreferrer">Official website <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <p class="note-card__fineprint">Hours and prices can change. Check the website before you go.</p>
+            </template>
+          </li>
+          <li class="guide__item">
+            <button class="note note--green" type="button" style="--rot: -2deg; --tape: 2deg;" aria-haspopup="dialog">
+              <span class="note__paper">
+                <span class="note__title">Museum &amp; Art Gallery</span>
+                <span class="note__city">Bristol</span>
+              </span>
+              <span class="note__tape" aria-hidden="true"></span>
+              <span class="visually-hidden">Open details</span>
+            </button>
+            <template>
+              <p class="note-card__tag">Street art location</p>
+              <h3 class="note-card__title" id="note-card-title">Bristol Museum &amp; Art Gallery</h3>
+              <dl class="note-card__info">
+                <div><dt>Address</dt><dd>Queens Road, Bristol BS8 1RL, England</dd></div>
+                <div><dt>Hours</dt><dd>Check the official website for current hours.</dd></div>
+                <div><dt>Price</dt><dd>Free</dd></div>
+              </dl>
+              <a class="note-card__link" href="https://www.bristolmuseums.org.uk/bristol-museum-and-art-gallery/" target="_blank" rel="noopener noreferrer">Official website <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <p class="note-card__fineprint">Hours and prices can change. Check the website before you go.</p>
+            </template>
+          </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Janela do post-it aberto (preenchida pelo script.js com o conteúdo do post-it clicado) -->
+  <div class="note-modal" id="note-modal" hidden>
+    <div class="note-modal__backdrop"></div>
+    <div class="note-card" role="dialog" aria-modal="true" aria-labelledby="note-card-title" tabindex="-1">
+      <span class="note-card__tape" aria-hidden="true"></span>
+      <button class="note-card__close" type="button" aria-label="Close" data-close>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <div class="note-card__body" id="note-card-body"></div>
+    </div>
+  </div>
+
+  <!-- PÁGINAS DOS QUADROS (cada uma aparece quando o endereço termina no seu id, ex.: #napalm) -->
+  <main class="painting page subpage" id="girl-with-balloon">
+    <section class="painting__frame">
+      <div class="painting__text">
+        <h1 class="painting__title">Girl with Balloon</h1>
+        <p class="painting__meta">2002 · London, United Kingdom · Hope and innocence</p>
+        <p class="painting__desc">A young girl reaches towards a red, heart-shaped balloon. The image is widely associated with hope, loss and the fragility of innocence.</p>
+      </div>
+
+      <img class="painting__img" src="images/girl%20with%20balloon.png" alt="Girl with Balloon">
+
+      <a class="back-btn" href="#work" data-gallery-index="0" aria-label="Back to the gallery">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      </a>
+    </section>
+  </main>
+
+  <main class="painting page subpage" id="love-is-in-the-air">
+    <section class="painting__frame">
+      <div class="painting__text">
+        <h1 class="painting__title">Love Is in the Air (Flower Thrower)</h1>
+        <p class="painting__meta">2003 · Bethlehem area · Peace and conflict</p>
+        <p class="painting__desc">A masked figure appears ready to throw an object, but holds a bouquet of flowers instead. The image contrasts the language of protest and violence with a symbol of peace.</p>
+      </div>
+
+      <img class="painting__img" src="images/love%20is%20in%20the%20air.png" alt="Love Is in the Air (Flower Thrower)">
+
+      <a class="back-btn" href="#work" data-gallery-index="1" aria-label="Back to the gallery">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      </a>
+    </section>
+  </main>
+
+  <main class="painting page subpage" id="kissing-coppers">
+    <section class="painting__frame">
+      <div class="painting__text">
+        <h1 class="painting__title">Kissing Coppers</h1>
+        <p class="painting__meta">2004 · Brighton, United Kingdom · Identity and authority</p>
+        <p class="painting__desc">Two uniformed police officers kiss. By placing an intimate gesture within a symbol of authority, the work invites reflection on social conventions, masculinity and public perceptions of policing.</p>
+      </div>
+
+      <img class="painting__img" src="images/kissing%20coppers.png" alt="Kissing Coppers">
+
+      <a class="back-btn" href="#work" data-gallery-index="2" aria-label="Back to the gallery">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      </a>
+    </section>
+  </main>
+
+  <main class="painting page subpage" id="napalm">
+    <section class="painting__frame">
+      <div class="painting__text">
+        <h1 class="painting__title">Napalm</h1>
+        <p class="painting__meta">2004 · Screenprint · War and consumerism</p>
+        <p class="painting__desc">The print places a frightened child from a famous Vietnam War photograph between Mickey Mouse and Ronald McDonald. The contrast challenges the cheerful imagery of commercial culture against the reality of war.</p>
+      </div>
+
+      <img class="painting__img" src="images/napalm1.png" alt="Napalm">
+
+      <a class="back-btn" href="#work" data-gallery-index="3" aria-label="Back to the gallery">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      </a>
+    </section>
+  </main>
+
+  <main class="painting page subpage" id="one-nation-under-cctv">
+    <section class="painting__frame">
+      <div class="painting__text">
+        <h1 class="painting__title">One Nation Under CCTV</h1>
+        <p class="painting__meta">2007–2008 · London · Surveillance</p>
+        <p class="painting__desc">A child appears to paint a message about surveillance while a police officer observes nearby. The work draws attention to the tension between public space, authority and constant monitoring.</p>
+      </div>
+
+      <img class="painting__img" src="images/one%20nation%20under%20cctv.png" alt="One Nation Under CCTV">
+
+      <a class="back-btn" href="#work" data-gallery-index="4" aria-label="Back to the gallery">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      </a>
+    </section>
+  </main>
+
+  <main class="painting page subpage" id="seasons-greetings">
+    <section class="painting__frame">
+      <div class="painting__text">
+        <h1 class="painting__title">Season’s Greetings</h1>
+        <p class="painting__meta">2018 · Port Talbot, Wales · Pollution</p>
+        <p class="painting__desc">A child seems to enjoy falling snow, until the other side of the artwork reveals that the flakes are ash from a burning bin. The work connects childhood imagery with industrial pollution.</p>
+      </div>
+
+      <img class="painting__img" src="images/greetings.png" alt="Season’s Greetings">
+
+      <a class="back-btn" href="#work" data-gallery-index="5" aria-label="Back to the gallery">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      </a>
+    </section>
+  </main>
+
+  <main class="painting page subpage" id="valentines-day-mascara">
+    <section class="painting__frame">
+      <div class="painting__text">
+        <h1 class="painting__title">Valentine’s Day Mascara</h1>
+        <p class="painting__meta">2023 · Margate, England · Domestic violence</p>
+        <p class="painting__desc">A 1950s-style housewife with a bruised face appears beside a freezer containing a man’s legs. The unsettling scene has been widely interpreted as a commentary on domestic violence against women.</p>
+      </div>
+
+      <img class="painting__img" src="images/mascara.png" alt="Valentine’s Day Mascara">
+
+      <a class="back-btn" href="#work" data-gallery-index="6" aria-label="Back to the gallery">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      </a>
+    </section>
+  </main>
+
+  <main class="painting page subpage" id="no-ball-games">
+    <section class="painting__frame">
+      <div class="painting__text">
+        <h1 class="painting__title">No Ball Games</h1>
+        <p class="painting__meta">2009 · London · Public space and childhood</p>
+        <p class="painting__desc">Children play with a street sign that prohibits ball games. The scene can be read as a playful challenge to restrictions on children’s use of public space.</p>
+      </div>
+
+      <img class="painting__img" src="images/no%20ball%20games.png" alt="No Ball Games">
+
+      <a class="back-btn" href="#work" data-gallery-index="7" aria-label="Back to the gallery">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      </a>
+    </section>
+  </main>
+
+  <main class="painting page subpage" id="laugh-now">
+    <section class="painting__frame">
+      <div class="painting__text">
+        <h1 class="painting__title">Laugh Now</h1>
+        <p class="painting__meta">2002 · Artwork series · Power and society</p>
+        <p class="painting__desc">A row of monkeys wearing signs with a warning about the future reverses the expected hierarchy between humans and animals. The work uses dark humour to question power, human behaviour and social order.</p>
+      </div>
+
+      <img class="painting__img" src="images/laugh%20now.png" alt="Laugh Now">
+
+      <a class="back-btn" href="#work" data-gallery-index="8" aria-label="Back to the gallery">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      </a>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

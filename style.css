@@ -1,0 +1,1010 @@
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --glass-light: rgba(255, 255, 255, 0.75);
+  --glass-dark: rgba(0, 0, 0, 0.75);
+  --radius: 10px;
+
+  /* Tamanho dos botões do menu (ajusta aqui) */
+  --nav-w: 100px;
+  --nav-h: 40px;
+  --nav-font: 32px;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Agdasima", sans-serif;
+  color: var(--black);
+  background: #f2f2f2;
+}
+
+/* Fundo de tijolos com blur (numa camada à parte, para o texto não desfocar) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  /* Substitui pelo ficheiro da parede de tijolos */
+  background: url("images/brick-wall.jpg") center / cover no-repeat;
+  filter: blur(2px);
+  transform: scale(1.05);     /* evita bordas claras nas margens por causa do blur */
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 56px 85px 0;
+}
+
+.navbar__logo img {
+  display: block;
+  height: 50px;
+  width: auto;
+}
+
+.navbar__menu {
+  display: flex;
+  gap: 12px;
+}
+
+/* Botão hambúrguer: só aparece no telemóvel */
+.navbar__toggle {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 48px;
+  height: var(--nav-h);
+  color: var(--black);
+  background: var(--glass-light);
+  border: 1px solid var(--black);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.navbar__toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.navbar__toggle:hover,
+.navbar__toggle:focus-visible {
+  background: var(--glass-dark);
+  color: var(--white);
+}
+
+/* Menu aberto: as 3 linhas viram um X */
+.navbar__toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.navbar__toggle.is-open span:nth-child(2) { opacity: 0; }
+.navbar__toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Botões do menu: radius 10, outline preto, fill branco a 75% */
+.nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--nav-w);
+  height: var(--nav-h);
+  font-size: var(--nav-font);
+  line-height: 1;
+  color: var(--black);
+  background: var(--glass-light);
+  border: 1px solid var(--black);
+  border-radius: var(--radius);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* O botão da página atual fica sempre com o estilo de hover */
+.nav-btn:hover,
+.nav-btn:focus-visible,
+body:has(#about:target) #nav-about,
+body:has(#work:target) #nav-work,
+body:has(#guide:target) #nav-guide,
+body:has(.painting:target) #nav-work {
+  background: var(--glass-dark);
+  border-color: var(--black);
+  color: var(--white);
+}
+
+/* ---------- Páginas no mesmo ficheiro ---------- */
+/* Por defeito vê-se o início; o endereço (#about, #work, #napalm...) decide qual a página visível */
+main.subpage {
+  display: none;
+  scroll-margin-top: 120px; /* evita que o ecrã "salte" por cima do menu */
+}
+
+main.subpage:target {
+  display: flex;
+}
+
+body:has(.subpage:target) #home {
+  display: none;
+}
+
+/* Na página work o fundo é só a parede de tijolos, sem blur */
+body:has(#work:target)::before {
+  filter: none;
+  transform: none;
+}
+
+/* ---------- Hero (início) ---------- */
+.hero {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 85px 60px;
+}
+
+/* Contorno central: 1339x596, sem fill */
+.hero__frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1339px;
+  height: 596px;
+  border: 1px solid var(--black);
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+.hero__title {
+  font-family: "Abril Fatface", serif;
+  font-weight: 400;
+  font-size: clamp(48px, 8.27vw, 125px);
+  line-height: 1.1;
+  color: var(--black);
+}
+
+.hero__subtitle {
+  margin-top: 8px;
+  font-family: "Agdasima", sans-serif;
+  font-weight: 400;
+  font-size: clamp(28px, 3.44vw, 52px);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+/* Botão CTA: 256x54, radius 10, outline preto, fill branco a 75% */
+.cta-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 190px;
+  height: 44px;
+  margin-top: 44px;
+  font-size: 32px;
+  line-height: 1;
+  color: var(--black);
+  background: var(--glass-light);
+  border: 1px solid var(--black);
+  border-radius: var(--radius);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.cta-btn:hover,
+.cta-btn:focus-visible {
+  background: var(--glass-dark);
+  border-color: var(--black);
+  color: var(--white);
+}
+
+/* ---------- Página About ---------- */
+/* Contorno: 1339 de largura, sem fill, altura conforme o texto */
+.about__frame {
+  display: grid;
+  grid-template-columns: minmax(0, 906px) 1fr;
+  align-items: center;
+  width: 100%;
+  max-width: 1339px;
+  padding: 48px;
+  border: 1px solid var(--black);
+  border-radius: var(--radius);
+}
+
+.about__title {
+  margin-bottom: 24px;
+  font-family: "Abril Fatface", serif;
+  font-weight: 400;
+  font-size: clamp(36px, 4.23vw, 64px);
+  line-height: 1.15;
+  color: var(--black);
+}
+
+.about__text p {
+  font-family: "Afacad", sans-serif;
+  font-size: clamp(20px, 2.12vw, 32px);
+  line-height: 1.25;
+  color: var(--black);
+}
+
+.about__text p + p {
+  margin-top: 1.25em;
+}
+
+.about__icon {
+  justify-self: center;
+  width: clamp(120px, 15vw, 228px);
+  height: auto;
+}
+
+/* ---------- Página Work (galeria) ---------- */
+.work {
+  --overlay: rgba(0, 0, 0, 0.6);  /* escurecimento do quadro no hover (0.5 a 0.75) */
+  flex: 1;
+  align-items: center;
+  padding: 40px 0 60px;
+}
+
+.gallery {
+  --per-page: 3;                      /* quadros visíveis de cada vez */
+  --gap: clamp(16px, 5.3vw, 80px);
+  --side: 143px;                      /* margem lateral onde ficam as setas */
+  --arrow: 56px;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Lista com os 9 quadros em fila; o JavaScript desliza a fila */
+.gallery__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - (var(--per-page) - 1) * var(--gap)) / var(--per-page));
+  gap: var(--gap);
+  margin-inline: var(--side);
+  list-style: none;
+  transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Os quadros fora do grupo atual desaparecem enquanto deslizam */
+.gallery__item {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.gallery__item.is-current {
+  opacity: 1;
+}
+
+/* Quadro: imagem 960x1200 (4:5) com título que aparece no hover */
+.art-card {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  /* sem fundo: os png são transparentes e a parede de tijolos fica visível à volta da moldura */
+}
+
+.art-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.art-card__title {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  font-family: "Abril Fatface", serif;
+  font-size: clamp(22px, 2.4vw, 36px);
+  line-height: 1.15;
+  color: var(--white);
+  background: var(--overlay);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.art-card:hover .art-card__title,
+.art-card:focus-visible .art-card__title {
+  opacity: 1;
+}
+
+/* Aviso quando a imagem não é encontrada (ajuda a detetar nomes/pastas errados) */
+.art-card__title[data-missing] {
+  flex-direction: column;
+  gap: 12px;
+  opacity: 1;
+}
+
+.art-card__title[data-missing]::after {
+  content: "Image not found: " attr(data-missing);
+  font-family: "Agdasima", sans-serif;
+  font-size: 16px;
+  word-break: break-all;
+}
+
+/* Em ecrãs de toque não há hover: o título fica sempre visível, em baixo */
+@media (hover: none) {
+  .art-card__title {
+    align-items: flex-end;
+    padding: 16px 12px;
+    font-size: 24px;
+    background: linear-gradient(to bottom, transparent 55%, rgba(0, 0, 0, 0.75));
+    opacity: 1;
+  }
+}
+
+/* Setas: mesmo estilo dos botões do menu */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--arrow);
+  height: var(--arrow);
+  color: var(--black);
+  background: var(--glass-light);
+  border: 1px solid var(--black);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.arrow[hidden] {
+  display: none;
+}
+
+.arrow--prev {
+  left: calc((var(--side) - var(--arrow)) / 2);
+}
+
+.arrow--next {
+  right: calc((var(--side) - var(--arrow)) / 2);
+}
+
+.arrow:hover,
+.arrow:focus-visible {
+  background: var(--glass-dark);
+  color: var(--white);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery__track,
+  .gallery__item {
+    transition: none;
+  }
+}
+
+/* ---------- Páginas dos quadros ---------- */
+.painting {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 85px 60px;
+}
+
+/* Imagem à esquerda, texto à direita (qualquer tamanho de imagem) */
+.painting__frame {
+  position: relative;
+  display: grid;
+  grid-template-columns: clamp(240px, 32vw, 460px) minmax(0, 1fr);
+  grid-template-areas: "image text";
+  align-items: center;
+  column-gap: 48px;
+  width: 100%;
+  max-width: 1339px;
+  min-height: 610px;
+  padding: 36px;
+  border: 1px solid var(--black);
+  border-radius: var(--radius);
+}
+
+/* Texto centrado na vertical com a imagem */
+.painting__text {
+  grid-area: text;
+  align-self: center;
+}
+
+.painting__title {
+  margin-bottom: 20px;
+  font-family: "Abril Fatface", serif;
+  font-weight: 400;
+  font-size: clamp(32px, 3.17vw, 48px);
+  line-height: 1.15;
+  color: var(--black);
+}
+
+.painting__meta,
+.painting__desc {
+  font-family: "Agdasima", sans-serif;
+  font-size: clamp(20px, 2.12vw, 32px);
+  color: var(--black);
+}
+
+.painting__meta {
+  margin-bottom: 28px;
+  letter-spacing: 0.1em;
+}
+
+.painting__desc {
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+}
+
+/* A imagem cabe sempre na caixa, sem deformar, encostada à esquerda */
+.painting__img {
+  grid-area: image;
+  justify-self: start;
+  align-self: center;
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 535px;
+}
+
+/* Bolinha com seta que volta à galeria */
+.back-btn {
+  position: absolute;
+  right: 36px;
+  bottom: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  color: var(--black);
+  background: var(--glass-light);
+  border: 1px solid var(--black);
+  border-radius: 50%;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.back-btn:hover,
+.back-btn:focus-visible {
+  color: var(--white);
+  background: var(--glass-dark);
+}
+
+/* ---------- Página Guide (parede de post-its) ---------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.guide {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 85px 60px;
+}
+
+.guide__frame {
+  display: flex;
+  flex-direction: column;
+  gap: 52px;
+  width: 100%;
+  max-width: 1339px;
+  padding: 40px 36px 48px;
+  border: 1px solid var(--black);
+  border-radius: var(--radius);
+}
+
+/* O envolvente fica "transparente": os 3 grupos empilham-se, um por baixo do outro */
+.guide__row {
+  display: flex;
+  flex-direction: column;
+  gap: 52px;
+}
+
+.guide__heading {
+  margin-bottom: 22px;
+  font-family: "Abril Fatface", serif;
+  font-weight: 400;
+  font-size: clamp(26px, 2.65vw, 40px);
+  line-height: 1.15;
+  color: var(--black);
+}
+
+.guide__notes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 36px;
+  list-style: none;
+}
+
+/* Cores pastel dos post-its */
+.note--yellow { --note: #fff3a3; }
+.note--pink   { --note: #ffc9dd; }
+.note--blue   { --note: #bde3ff; }
+.note--green  { --note: #c4f0c5; }
+
+/* Post-it na parede */
+.note {
+  --note-size: clamp(150px, 14.2vw, 200px);
+  position: relative;
+  display: block;
+  width: var(--note-size);
+  height: var(--note-size);
+  padding: 0;
+  font: inherit;
+  color: var(--black);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transform: rotate(var(--rot, 0deg));
+  filter: drop-shadow(0 5px 6px rgba(0, 0, 0, 0.22));
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+/* Ao passar o cursor: levanta-se, endireita-se e ganha sombra */
+.note:hover,
+.note:focus-visible {
+  z-index: 2;
+  transform: rotate(0deg) translateY(-8px) scale(1.05);
+  filter: drop-shadow(0 16px 14px rgba(0, 0, 0, 0.28));
+}
+
+/* Quando está aberto, o post-it "descolou" da parede */
+.note.is-peeled {
+  opacity: 0;
+  transition: none;
+  pointer-events: none;
+}
+
+.note__paper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 22px 16px 18px;
+  text-align: center;
+  background-color: var(--note);
+  background-image: linear-gradient(170deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0) 45%);
+  /* canto inferior direito cortado (fica a 0 em repouso e dobra no hover) */
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 0px), calc(100% - 0px) 100%, 0 100%);
+  transition: clip-path 0.25s ease;
+}
+
+.note:hover .note__paper,
+.note:focus-visible .note__paper {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%);
+}
+
+/* A parte dobrada do canto */
+.note__paper::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  background-color: var(--note);
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.55), rgba(0, 0, 0, 0.18));
+  clip-path: polygon(100% 0, 0 100%, 0 0);
+  transition: width 0.25s ease, height 0.25s ease;
+}
+
+.note:hover .note__paper::after,
+.note:focus-visible .note__paper::after {
+  width: 30px;
+  height: 30px;
+}
+
+.note__title {
+  font-family: "Permanent Marker", cursive;
+  font-size: clamp(17px, 1.65vw, 23px);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.note__city {
+  font-family: "Agdasima", sans-serif;
+  font-size: clamp(16px, 1.5vw, 21px);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+/* Fita-cola */
+.note__tape,
+.note-card__tape {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 64px;
+  height: 24px;
+  margin-left: -32px;
+  background: rgba(250, 246, 235, 0.72);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+  transform: rotate(var(--tape, -2deg));
+}
+
+/* Post-it aberto no centro do ecrã */
+html.has-note-open {
+  overflow: hidden;
+}
+
+.note-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.note-modal[hidden] {
+  display: none;
+}
+
+.note-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.62);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.note-modal.is-open .note-modal__backdrop {
+  opacity: 1;
+}
+
+.note-card {
+  position: relative;
+  width: min(460px, 100%);
+  padding: 44px 32px 28px;
+  color: var(--black);
+  background-color: var(--note);
+  background-image: linear-gradient(170deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0) 40%);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+  outline: none;
+}
+
+.note-card__tape {
+  top: -14px;
+  width: 84px;
+  height: 28px;
+  margin-left: -42px;
+  --tape: -2deg;
+}
+
+.note-card__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--black);
+  background: var(--glass-light);
+  border: 1px solid var(--black);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.note-card__close:hover,
+.note-card__close:focus-visible {
+  color: var(--white);
+  background: var(--glass-dark);
+}
+
+.note-card__body {
+  max-height: calc(100vh - 150px);
+  overflow-y: auto;
+}
+
+.note-card__tag {
+  margin-bottom: 6px;
+  padding-right: 48px;
+  font-family: "Agdasima", sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.note-card__title {
+  margin-bottom: 22px;
+  font-family: "Permanent Marker", cursive;
+  font-weight: 400;
+  font-size: clamp(26px, 6vw, 34px);
+  line-height: 1.15;
+}
+
+.note-card__info div + div {
+  margin-top: 14px;
+}
+
+.note-card__info dt {
+  font-family: "Agdasima", sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.note-card__info dd {
+  font-family: "Agdasima", sans-serif;
+  font-size: 26px;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+}
+
+/* Botão para o site: mesmo estilo dos botões do menu */
+.note-card__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 46px;
+  margin-top: 26px;
+  font-family: "Agdasima", sans-serif;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--black);
+  background: var(--glass-light);
+  border: 1px solid var(--black);
+  border-radius: var(--radius);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.note-card__link:hover,
+.note-card__link:focus-visible {
+  color: var(--white);
+  background: var(--glass-dark);
+}
+
+.note-card__fineprint {
+  margin-top: 14px;
+  font-family: "Agdasima", sans-serif;
+  font-size: 17px;
+  letter-spacing: 0.04em;
+  opacity: 0.65;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .note,
+  .note__paper,
+  .note__paper::after,
+  .note-modal__backdrop {
+    transition: none;
+  }
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 1100px) {
+  .gallery {
+    --side: 72px;
+  }
+}
+
+@media (max-width: 900px) {
+  .navbar {
+    padding: 32px 40px 0;
+  }
+
+  .hero {
+    padding: 32px 24px 48px;
+  }
+
+  .hero__frame {
+    height: auto;
+    min-height: 420px;
+    padding: 32px 16px;
+  }
+
+  .about__frame {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 24px;
+  }
+
+  .painting {
+    padding: 32px 24px 48px;
+  }
+
+  .guide {
+    padding: 32px 24px 48px;
+  }
+
+  .guide__frame {
+    padding: 24px;
+  }
+
+  .painting__frame {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "image"
+      "text"
+      "back";
+    row-gap: 24px;
+    min-height: 0;
+    padding: 24px;
+  }
+
+  .painting__img {
+    justify-self: center;
+    align-self: start;
+    max-height: 480px;
+  }
+
+  .painting__text {
+    align-self: start;
+  }
+
+  .back-btn {
+    grid-area: back;
+    position: static;
+    justify-self: end;
+  }
+}
+
+/* ---------- Telemóvel ---------- */
+@media (max-width: 720px) {
+  .navbar {
+    padding: 20px 20px 0;
+  }
+
+  .navbar__logo img {
+    height: 36px;
+  }
+
+  /* Menu vira hambúrguer: painel que abre por baixo do botão */
+  .navbar__toggle {
+    display: flex;
+  }
+
+  .navbar__menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 20px;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid var(--black);
+    border-radius: var(--radius);
+  }
+
+  .navbar__menu.is-open {
+    display: flex;
+  }
+
+  .nav-btn {
+    width: 140px;
+  }
+
+  /* Início */
+  .hero {
+    padding: 24px 20px 40px;
+  }
+
+  .hero__frame {
+    min-height: 380px;
+  }
+
+  .hero__title {
+    font-size: 44px;
+  }
+
+  .hero__subtitle {
+    font-size: 22px;
+  }
+
+  .cta-btn {
+    width: 170px;
+    height: 40px;
+    margin-top: 32px;
+    font-size: 28px;
+  }
+
+  /* Páginas dos quadros */
+  .painting {
+    padding: 24px 20px 40px;
+  }
+
+  /* Guide: 2 post-its por linha */
+  .guide {
+    padding: 24px 20px 40px;
+  }
+
+  .guide__notes {
+    gap: 30px 16px;
+  }
+
+  .note {
+    --note-size: min(40vw, 170px);
+  }
+
+  .note-card {
+    padding: 40px 24px 24px;
+  }
+
+  .painting__title {
+    font-size: 32px;
+  }
+
+  .painting__meta,
+  .painting__desc {
+    font-size: 19px;
+    letter-spacing: 0.05em;
+  }
+
+  /* About */
+  .about__title {
+    font-size: 32px;
+  }
+
+  .about__text p {
+    font-size: 19px;
+  }
+
+  /* Galeria: 1 quadro de cada vez, setas por baixo */
+  .work {
+    padding: 24px 0 40px;
+  }
+
+  .gallery {
+    --per-page: 1;
+    --gap: 16px;
+    --side: 24px;
+    --arrow: 48px;
+    padding-bottom: 72px;
+  }
+
+  .arrow {
+    top: auto;
+    bottom: 0;
+    transform: none;
+  }
+
+  .arrow--prev {
+    left: calc(50% - var(--arrow) - 8px);
+  }
+
+  .arrow--next {
+    right: auto;
+    left: calc(50% + 8px);
+  }
+}
